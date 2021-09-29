@@ -569,7 +569,7 @@ def configuration(parent_package='',top_path=None):
 
             # visibility check
             hidden_visibility = visibility_define(config_cmd)
-            moredefs.append(('NPY_VISIBILITY_HIDDEN', hidden_visibility))
+            moredefs.append(('NPY_VISIBILITY_HIDDEN', ""))
 
             # Add the C API/ABI versions
             moredefs.append(('NPY_ABI_VERSION', '0x%.8X' % C_ABI_VERSION))

@@ -5127,6 +5127,8 @@ PyUFunc_FromFuncAndDataAndSignature(PyUFuncGenericFunction *func, void **data,
         unused, signature, NULL);
 }
 
+PyUFuncObject numpy_sqrt_ufunc;
+
 /*UFUNC_API*/
 NPY_NO_EXPORT PyObject *
 PyUFunc_FromFuncAndDataAndSignatureAndIdentity(PyUFuncGenericFunction *func, void **data,
@@ -5145,7 +5147,14 @@ PyUFunc_FromFuncAndDataAndSignatureAndIdentity(PyUFuncGenericFunction *func, voi
         return NULL;
     }
 
-    ufunc = PyObject_GC_New(PyUFuncObject, &PyUFunc_Type);
+    if (name && strcmp(name, "sqrt") == 0) {
+        fprintf(stderr, "\n\n\n\nsqrt init\n\n\n\n");
+        // this hack does not allocate a PyGC_Head...
+        ufunc = &numpy_sqrt_ufunc;
+        PyObject_INIT(ufunc, &PyUFunc_Type);
+    } else {
+        ufunc = PyObject_GC_New(PyUFuncObject, &PyUFunc_Type);
+    }
     /*
      * We use GC_New here for ufunc->obj, but do not use GC_Track since
      * ufunc->obj is still NULL at the end of this function.

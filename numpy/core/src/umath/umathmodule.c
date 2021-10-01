@@ -233,7 +233,7 @@ intern_strings(void)
 
 /* Setup the umath part of the module */
 
-PyObject* numpy_sqrt_ufunc = NULL;
+//PyObject* numpy_sqrt_ufunc = NULL;
 
 int initumath(PyObject *m)
 {
@@ -301,7 +301,7 @@ int initumath(PyObject *m)
     PyDict_SetItemString(d, "conj", s);
     PyDict_SetItemString(d, "mod", s2);
 
-    numpy_sqrt_ufunc = PyDict_GetItemString(d, "sqrt");
+    //numpy_sqrt_ufunc = PyDict_GetItemString(d, "sqrt");
 
     if (intern_strings() < 0) {
         PyErr_SetString(PyExc_RuntimeError,

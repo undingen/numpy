@@ -477,7 +477,7 @@ _make_new_typetup(
  * the content, since it will use the legacy type resolution, which can special
  * case 0-D arrays (using value-based logic).
  */
-static int
+/*static*/ int
 legacy_promote_using_legacy_type_resolver(PyUFuncObject *ufunc,
         PyArrayObject *const *ops, PyArray_DTypeMeta *signature[],
         PyArray_DTypeMeta *operation_DTypes[], int *out_cacheable)
